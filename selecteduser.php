@@ -13,7 +13,7 @@
 			font: Bold;
 			font-family: 'Times New Roman', Times, serif;
 			Color: White;
-			text-align: center bottom;
+			text-align: center;
 			background-color: #212529;
 			padding: 1%;
 			margin: 1px;
@@ -21,6 +21,15 @@
 		body{
 			background-color: #212529;
 		}
+    footer 
+    {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            color: #ffff;
+        }
 	</style>
   </head>
   <body>
@@ -150,7 +159,7 @@ if(isset($_POST['submit']))
     {
         
         echo '<script type="text/javascript">';
-        echo ' alert("Bad Luck! Insufficient Balance")';  // showing an alert box.
+        echo ' alert("Insufficient Balance")';  // showing an alert box.
         echo '</script>';
     }
     
@@ -159,9 +168,9 @@ if(isset($_POST['submit']))
     // constraint to check zero values
     else if($amount == 0){
  
-         echo "<script type='text/javascript'>";
-         echo "alert('Oops! Zero value cannot be transferred')";
-         echo "</script>";
+         echo '<script type="text/javascript">';
+         echo 'alert("Zero value cannot be transferred")';
+         echo '</script>';
      }
  
  
@@ -185,9 +194,9 @@ if(isset($_POST['submit']))
                 $query=mysqli_query($con,$sql);
  
                 if($query){
-                     echo "<script> alert('Hurray! Transaction is Successful');
-                                     window.location='transactionhistory.php';
-                           </script>";
+                     echo '<script> alert("Transaction was Successful");
+                                     window.location="transactionhistory.php";
+                           </script>';
                     
                 }
  
@@ -197,9 +206,16 @@ if(isset($_POST['submit']))
     
 }
 ?>
- 
+ <footer>
+  <br>
+  Contact
+  <br>
+  email - bos@gmail.com
+  <br>
+  Phone - 022 - 05050505
+  <br>
+  &#169;Bank of Sparks
+</footer>
 
-
- 
  </body>
 </html>
