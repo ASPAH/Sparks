@@ -21,16 +21,6 @@
 		body{
 			background-color: #212529;
 		}
-
-    footer 
-    {
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            color: #ffff;
-        }
 	</style>
   </head>
   <body>
@@ -91,6 +81,42 @@ $_SESSION['id']=$id;
 	  <td style="text-align: center;"><?php echo $data['Balance']; ?></td>
 	</tr>
 </table>
+<form method="post" name="tcredit" class="tabletext" >
+        <br><br><br>
+        <label style="color : white;"><b>Transfer To:</b></label>
+        <select name="to" class="form-control" required>
+            <option value="" disabled selected>Choose account</option>
+            <?php
+                include 'config.php';
+                $id=$_GET['id'];
+                $q1 = "SELECT * FROM `customer_list`.`customer data`";
+                $result=mysqli_query($con,$q1);
+                if(!$result)
+                {
+                    echo "Error ".$q1."<br>".mysqli_error($con);
+                }
+                while($data = mysqli_fetch_assoc($result)) {
+            ?>
+                <option class="table" value="<?php echo $data['id'];?>" >
+                
+                    <?php echo $data['Name'] ;?> (Balance: 
+                    <?php echo $data['Balance'] ;?> ) 
+               
+                </option>
+            <?php 
+                } 
+            ?>
+            <div>
+        </select>
+        <br>
+        <br>
+            <label style="color : white;"><b>Amount:</b></label>
+            <input type="number" class="form-control" name="amount" required>   
+            <br><br>
+                <div class="text-center" >
+            <button name="submit" type="submit" id="myBtn" >Transfer Money</button>
+            </div>
+        </form>
 <?php
 include 'config.php';
 if(isset($_POST['submit']))
@@ -155,11 +181,11 @@ if(isset($_POST['submit']))
 				       $date = date('Y-m-d H:i:s');
                 $sender = $sql1['Name'];
                 $receiver = $sql2['Name'];
-                $sql = " INSERT INTO `bank`.`transhistory`(`sender`, `receiver`, `amount transferred`,`datetime`) VALUES ('$sender','$receiver','$amount','$date')";
+                $sql = " INSERT INTO `customer_list`.`transaction_history`(`sender`, `receiver`, `amount transferred`,`datetime`) VALUES ('$sender','$receiver','$amount','$date')";
                 $query=mysqli_query($con,$sql);
  
                 if($query){
-                     echo "<script type='text/javascript'> alert('Hurray! Transaction is Successful');
+                     echo "<script> alert('Hurray! Transaction is Successful');
                                      window.location='transactionhistory.php';
                            </script>";
                     
@@ -173,52 +199,7 @@ if(isset($_POST['submit']))
 ?>
  
 
-<form method="post" name="tcredit" class="tabletext" >
-        <br><br><br>
-        <label style="color : white;"><b>Transfer To:</b></label>
-        <select name="to" class="form-control" required>
-            <option value="" disabled selected>Choose account</option>
-            <?php
-                include 'config.php';
-                $id=$_GET['id'];
-                $q1 = "SELECT * FROM `customer_list`.`customer data`";
-                $result=mysqli_query($con,$q1);
-                if(!$result)
-                {
-                    echo "Error ".$q1."<br>".mysqli_error($con);
-                }
-                while($data = mysqli_fetch_assoc($result)) {
-            ?>
-                <option class="table" value="<?php echo $data['id'];?>" >
-                
-                    <?php echo $data['Name'] ;?> (Balance: 
-                    <?php echo $data['Balance'] ;?> ) 
-               
-                </option>
-            <?php 
-                } 
-            ?>
-            <div>
-        </select>
-        <br>
-        <br>
-            <label style="color : white;"><b>Amount:</b></label>
-            <input type="number" class="form-control" name="amount" required>   
-            <br><br>
-                <div class="text-center" >
-            <button name="submit" type="submit" id="myBtn" >Transfer Money</button>
-            </div>
-        </form>
+
  
-        <footer>
-           <br>
-           Contact
-           <br>
-           email - bos@gmail.com
-           <br>
-           Phone - 022 - 05050505
-           <br>
-           &#169;Bank of Sparks
-        </footer>
  </body>
 </html>
