@@ -42,25 +42,29 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
       <div class="container-fluid">
-        <a class="navbar-brand" href="Home.html">Bank of Sparks</a>
+        <a class="navbar-brand" href="index.html">Bank of Sparks</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Home.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Customerlist.php">Transact</a>
-            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Trasactions</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item active" href="Customerlist.php">Transfer Money</a></li>
+                  <li><a class="dropdown-item" href="transactionhistory.php">Transaction History</a></li>
+              </ul>
+          </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">About</a>
             </li>
           </ul>
         </div>
       </div>
-    </nav>   
+   </nav>
 <h2>Transaction Details</h2>
 
 <table class="table table-dark table-striped table-bordered border-white">
